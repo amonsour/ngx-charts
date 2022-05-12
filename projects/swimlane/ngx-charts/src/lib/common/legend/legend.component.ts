@@ -7,10 +7,7 @@ import {
   SimpleChanges,
   OnChanges,
   ChangeDetectorRef,
-  ViewEncapsulation,
-  ElementRef,
-  ViewChild,
-  HostListener
+  ViewEncapsulation
 } from '@angular/core';
 import { formatLabel } from '../label.helper';
 import { ColorHelper } from '../color.helper';
@@ -63,8 +60,6 @@ export class LegendComponent implements OnChanges {
   @Output() labelActivate: EventEmitter<{ name: string }> = new EventEmitter();
   @Output() labelDeactivate: EventEmitter<{ name: string }> = new EventEmitter();
 
-  @ViewChild('legend') legend: ElementRef;
-
   legendEntries: LegendEntry[] = [];
 
   constructor(private cd: ChangeDetectorRef) {}
@@ -77,7 +72,6 @@ export class LegendComponent implements OnChanges {
     this.cd.markForCheck();
     this.legendEntries = this.getLegendEntries();
   }
-
 
   getLegendEntries(): LegendEntry[] {
     const items = [];
