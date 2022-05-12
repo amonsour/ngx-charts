@@ -6,8 +6,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef,
-  OnInit
+  TemplateRef
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { scaleLinear, scaleTime, scalePoint } from 'd3-scale';
@@ -160,7 +159,7 @@ const twoPI = 2 * Math.PI;
     ])
   ]
 })
-export class PolarChartComponent extends BaseChartComponent implements OnInit {
+export class PolarChartComponent extends BaseChartComponent {
   @Input() legend: boolean;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: LegendPosition = LegendPosition.Right;
@@ -416,10 +415,9 @@ export class PolarChartComponent extends BaseChartComponent implements OnInit {
     switch (this.scaleType) {
       case ScaleType.Time:
         return scaleTime().range([0, width]).domain(domain);
-      case ScaleType.Linear: {
+      case ScaleType.Linear:
         const scale = scaleLinear().range([0, width]).domain(domain);
         return this.roundDomains ? scale.nice() : scale;
-      }
       default:
         return scalePoint()
           .range([0, width - twoPI / domain.length])

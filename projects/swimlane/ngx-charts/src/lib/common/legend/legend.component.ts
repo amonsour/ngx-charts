@@ -7,7 +7,10 @@ import {
   SimpleChanges,
   OnChanges,
   ChangeDetectorRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ElementRef,
+  ViewChild,
+  HostListener
 } from '@angular/core';
 import { formatLabel } from '../label.helper';
 import { ColorHelper } from '../color.helper';
@@ -26,7 +29,7 @@ export interface LegendEntry {
         <span class="legend-title-text">{{ title }}</span>
       </header>
       <div class="legend-wrap">
-        <ul class="legend-labels" [class.horizontal-legend]="horizontal" [style.max-height.px]="height - 45">
+        <ul class="legend-labels" [class.horizontal-legend]="horizontal" [style.max-height.px]="height">
           <li *ngFor="let entry of legendEntries; trackBy: trackBy" class="legend-label">
             <ngx-charts-legend-entry
               [label]="entry.label"
@@ -60,6 +63,8 @@ export class LegendComponent implements OnChanges {
   @Output() labelActivate: EventEmitter<{ name: string }> = new EventEmitter();
   @Output() labelDeactivate: EventEmitter<{ name: string }> = new EventEmitter();
 
+  @ViewChild('legend') legend: ElementRef;
+
   legendEntries: LegendEntry[] = [];
 
   constructor(private cd: ChangeDetectorRef) {}
@@ -72,6 +77,7 @@ export class LegendComponent implements OnChanges {
     this.cd.markForCheck();
     this.legendEntries = this.getLegendEntries();
   }
+
 
   getLegendEntries(): LegendEntry[] {
     const items = [];

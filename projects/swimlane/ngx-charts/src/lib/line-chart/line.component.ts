@@ -8,8 +8,7 @@ import {
   ChangeDetectionStrategy,
   SimpleChanges,
   PLATFORM_ID,
-  Inject,
-  OnInit
+  Inject
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { select } from 'd3-selection';
@@ -51,7 +50,7 @@ import { isPlatformServer } from '@angular/common';
     ])
   ]
 })
-export class LineComponent implements OnChanges, OnInit {
+export class LineComponent implements OnChanges {
   @Input() path: string;
   @Input() stroke: string;
   @Input() data: Series;

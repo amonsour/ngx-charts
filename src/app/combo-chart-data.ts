@@ -1,4 +1,4 @@
-export const lineChart: any = [
+export let lineChart: any = [
   {
     value: 50,
     name: 'USA'
@@ -21,7 +21,7 @@ export const lineChart: any = [
   }
 ];
 
-export const lineChartSeries = [
+export let lineChartSeries = [
   {
     name: 'Tablets',
     series: [
@@ -99,7 +99,7 @@ export const lineChartSeries = [
   }
 ];
 
-export const barChart: any = [
+export let barChart: any = [
   {
     name: 'USA',
     value: 50000

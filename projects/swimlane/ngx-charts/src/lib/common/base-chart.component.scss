@@ -49,6 +49,16 @@
     }
   }
 
+  .x.axis {
+    .tick {
+      display: none;
+
+      &:nth-child(4n) {
+        display: block;
+      }
+    }
+  }
+
   .line-series,
   .line-series-range,
   .polar-series-path,

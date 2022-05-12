@@ -20,6 +20,14 @@
   }
 
   .horizontal-legend {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-left: 10px;
+
+    &.legend-labels {
+      width: calc(100% - 10px);
+    }
+
     li {
       display: inline-block;
     }
@@ -30,6 +38,8 @@
   }
 
   .legend-labels {
+    display: flex;
+    flex-wrap: wrap;
     line-height: 85%;
     list-style: none;
     text-align: left;
@@ -39,17 +49,16 @@
     overflow-y: auto;
     overflow-x: hidden;
     white-space: nowrap;
-    background: rgba(0, 0, 0, 0.05);
   }
 
   .legend-label {
     cursor: pointer;
     font-size: 90%;
     margin: 8px;
-    color: #afb7c8;
+    color: #000;
 
     &:hover {
-      color: #000;
+      color: #686F76;
       -webkit-transition: 0.2s;
       -moz-transition: 0.2s;
       transition: 0.2s;
@@ -57,7 +66,7 @@
 
     .active {
       .legend-label-text {
-        color: #000;
+        color: #686F76;
       }
     }
   }
@@ -75,7 +84,7 @@
     display: inline-block;
     vertical-align: top;
     line-height: 15px;
-    font-size: 12px;
+    font-size: 14px;
     width: calc(100% - 20px);
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -37,7 +37,7 @@ const COMPONENTS = [
   SvgLinearGradientComponent,
   SvgRadialGradientComponent,
   Timeline,
-  AdvancedLegendComponent
+  AdvancedLegendComponent,
 ];
 
 @NgModule({

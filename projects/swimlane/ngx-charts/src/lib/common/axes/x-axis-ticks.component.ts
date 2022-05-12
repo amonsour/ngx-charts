@@ -28,7 +28,7 @@ import { TextAnchor } from '../types/text-anchor.enum';
           stroke-width="0.01"
           [attr.text-anchor]="textAnchor"
           [attr.transform]="textTransform"
-          [style.font-size]="'12px'"
+          [style.font-size]="'14px'"
         >
           {{ tickTrim(tickFormat(tick)) }}
         </svg:text>
@@ -108,7 +108,6 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
     if (this.tickFormatting) {
       this.tickFormat = this.tickFormatting;
     } else if (scale.tickFormat) {
-      // eslint-disable-next-line prefer-spread
       this.tickFormat = scale.tickFormat.apply(scale, this.tickArguments);
     } else {
       this.tickFormat = function (d) {

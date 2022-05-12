@@ -224,7 +224,7 @@ export class BoxComponent implements OnChanges {
   // TODO: Refactor into another .ts file if https://github.com/swimlane/ngx-charts/pull/1179 gets merged.
   pathTween(d1: string, precision: number) {
     return function () {
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      // tslint:disable-next-line: no-this-assignment
       const path0 = this;
       const path1 = this.cloneNode();
       path1.setAttribute('d', d1);
@@ -279,7 +279,11 @@ export class BoxComponent implements OnChanges {
       return [...this.lineCoordinates];
     }
 
-    const lineCoordinates: LineCoordinates = cloneDeep(this.lineCoordinates);
+    // simple clone for LineCoordinates
+    const lineCoordinates: LineCoordinates = this.lineCoordinates.map(x => ({
+      v1: {...x.v1},
+      v2: {...x.v2}
+    })) as LineCoordinates;
 
     lineCoordinates[1].v1.y = lineCoordinates[1].v2.y = lineCoordinates[3].v1.y = lineCoordinates[3].v2.y = lineCoordinates[0].v1.y = lineCoordinates[0].v2.y =
       lineCoordinates[2].v1.y;

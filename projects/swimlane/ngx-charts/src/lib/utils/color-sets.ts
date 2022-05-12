@@ -7,7 +7,7 @@ export interface Color {
   domain: string[];
 }
 
-export const colorSets: Color[] = [
+export let colorSets: Color[] = [
   {
     name: 'vivid',
     selectable: true,

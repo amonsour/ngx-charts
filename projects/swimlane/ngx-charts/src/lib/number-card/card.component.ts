@@ -12,8 +12,7 @@ import {
   NgZone,
   OnDestroy,
   PLATFORM_ID,
-  Inject,
-  OnInit
+  Inject
 } from '@angular/core';
 import { trimLabel } from '../common/trim-label.helper';
 import { roundedRect } from '../common/shape.helper';
@@ -71,7 +70,7 @@ import { VERDANA_FONT_WIDTHS_16_PX } from '../common/constants/font-widths';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CardComponent implements OnChanges, OnDestroy, OnInit {
+export class CardComponent implements OnChanges, OnDestroy {
   @Input() color: string;
   @Input() bandColor: string;
   @Input() textColor: string;

@@ -7,8 +7,7 @@ import {
   HostListener,
   ChangeDetectionStrategy,
   ContentChild,
-  TemplateRef,
-  OnInit
+  TemplateRef
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { scaleLinear, scaleTime, scalePoint } from 'd3-scale';
@@ -197,7 +196,7 @@ import { isPlatformServer } from '@angular/common';
     ])
   ]
 })
-export class LineChartComponent extends BaseChartComponent implements OnInit {
+export class LineChartComponent extends BaseChartComponent {
   @Input() legend: boolean;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: LegendPosition = LegendPosition.Right;

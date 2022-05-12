@@ -12,8 +12,7 @@ import {
   OnChanges,
   SimpleChanges,
   PLATFORM_ID,
-  Inject,
-  OnInit
+  Inject
 } from '@angular/core';
 
 import { fromEvent as observableFromEvent } from 'rxjs';
@@ -28,7 +27,7 @@ import { ViewDimensions } from './types/view-dimension.interface';
   selector: 'base-chart',
   template: ` <div></div> `
 })
-export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy, OnInit {
+export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy {
   @Input() results: any;
   @Input() view: [number, number];
   @Input() scheme: string | Color = 'cool';
