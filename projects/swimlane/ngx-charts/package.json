@@ -1,6 +1,6 @@
 {
   "name": "@amonsour/ngx-charts",
-  "version": "19.2.8",
+  "version": "19.2.9",
   "description": "Declarative Charting Framework for Angular",
   "repository": {
     "type": "git",
