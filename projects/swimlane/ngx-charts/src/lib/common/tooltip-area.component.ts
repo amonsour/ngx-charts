@@ -47,6 +47,7 @@ export interface Tooltip {
       <ng-template #defaultTooltipTemplate let-model="model">
         <xhtml:div class="area-tooltip-container">
           <xhtml:div *ngFor="let tooltipItem of model" class="tooltip-item">
+
             <xhtml:span class="tooltip-item-color" [style.background-color]="tooltipItem.color"></xhtml:span>
             {{ getToolTipText(tooltipItem) }}
           </xhtml:div>
@@ -118,45 +119,89 @@ export class TooltipArea {
 
   getValues(xVal): Tooltip[] {
     const results = [];
-
-    for (const group of this.results) {
-      const item = group.series.find(d => d.name.toString() === xVal.toString());
-      let groupName = group.name;
-      if (groupName instanceof Date) {
-        groupName = groupName.toLocaleDateString();
-      }
-
-      if (item) {
-        const label = item.name;
-        let val = item.value;
-        if (this.showPercentage) {
-          val = (item.d1 - item.d0).toFixed(2) + '%';
-        }
-        let color;
-        if (this.colors.scaleType === ScaleType.Linear) {
-          let v = val;
-          if (item.d1) {
-            v = item.d1;
+    // get all series that match the xVal and flatten the array
+    const matchingSeries = this.results.filter(
+      (singleSeries) => singleSeries.series.some((value) => value.name === xVal)
+    );
+    if (matchingSeries.length > 0) {
+      matchingSeries.forEach((singleSeries) => {
+        singleSeries.series.forEach((value) => {
+          if (this.showPercentage) {
+                  let val = (value.d1 - value.d0).toFixed(2) + '%';
+                }
+                let color;
+                if (this.colors.scaleType === ScaleType.Linear) {
+                  let v = value.name;
+                  if (value.d1) {
+                    v = value.d1;
+                  }
+                  color = this.colors.getColor(v);
+                } else {
+                  color = this.colors.getColor(singleSeries.name);
+                }
+          if (value.name === xVal) {
+            results.push({
+              name: value.name,
+              value: value.value,
+              series: singleSeries.name,
+              color: color,
+              min: singleSeries.min,
+              max: singleSeries.max,
+              extra: value.extra
+            });
           }
-          color = this.colors.getColor(v);
-        } else {
-          color = this.colors.getColor(group.name);
-        }
-
-        const data = Object.assign({}, item, {
-          value: val,
-          name: label,
-          series: groupName,
-          min: item.min,
-          max: item.max,
-          color
         });
-
-        results.push(data);
-      }
+      });
     }
-
     return results;
+
+    // for (const group of this.results) {
+    //   console.log(group)
+    //   const item = group.series.find(d => d.name.toString() === xVal.toString());
+
+    //   // get all series that match the xVal and flatten the array
+
+
+
+    //   console.log(items)
+    //   let groupName = group.name;
+    //   if (groupName instanceof Date) {
+    //     groupName = groupName.toLocaleDateString();
+    //   }
+
+    //   if (item) {
+    //     console.log(item)
+    //     const label = item.name;
+    //     let val = item.value;
+    //     if (this.showPercentage) {
+    //       val = (item.d1 - item.d0).toFixed(2) + '%';
+    //     }
+    //     let color;
+    //     if (this.colors.scaleType === ScaleType.Linear) {
+    //       let v = val;
+    //       if (item.d1) {
+    //         v = item.d1;
+    //       }
+    //       color = this.colors.getColor(v);
+    //     } else {
+    //       color = this.colors.getColor(group.name);
+    //     }
+
+    //     const data = Object.assign({}, item, {
+    //       value: val,
+    //       name: label,
+    //       series: groupName,
+    //       min: item.min,
+    //       max: item.max,
+    //       color,
+    //       extra: item.extra,
+    //     });
+
+    //     results.push(data);
+    //   }
+    // }
+
+    // return results;
   }
 
    @HostListener('touchmove', ['$event'])

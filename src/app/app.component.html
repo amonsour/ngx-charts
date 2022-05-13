@@ -376,6 +376,16 @@
         (activate)="activate($event)"
         (deactivate)="deactivate($event)"
       >
+      <!-- <ng-template #tooltipTemplate let-model="model">
+        
+          {{ model | json }}
+        
+      </ng-template>
+      <ng-template #seriesTooltipTemplate let-model="model">
+        
+        {{ model | json }}
+      
+    </ng-template> -->
       </ngx-charts-line-chart>
       <ngx-charts-polar-chart
         *ngIf="chartType === 'polar-chart'"
