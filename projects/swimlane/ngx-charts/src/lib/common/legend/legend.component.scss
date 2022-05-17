@@ -21,8 +21,9 @@
 
   .horizontal-legend {
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
     margin-left: 10px;
+    max-height: 80px;
 
     &.legend-labels {
       width: calc(100% - 10px);

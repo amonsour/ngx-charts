@@ -26,7 +26,7 @@ export interface LegendEntry {
         <span class="legend-title-text">{{ title }}</span>
       </header>
       <div class="legend-wrap">
-        <ul class="legend-labels" [class.horizontal-legend]="horizontal" [style.max-height.px]="height - 45">
+        <ul class="legend-labels" [class.horizontal-legend]="horizontal">
           <li *ngFor="let entry of legendEntries; trackBy: trackBy" class="legend-label">
             <ngx-charts-legend-entry
               [label]="entry.label"

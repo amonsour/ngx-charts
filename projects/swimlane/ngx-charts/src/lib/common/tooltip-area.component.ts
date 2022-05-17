@@ -119,7 +119,7 @@ export class TooltipArea {
 
   getValues(xVal): Tooltip[] {
     const results = [];
-    // get all series that match the xVal and flatten the array
+    
     const matchingSeries = this.results.filter(
       (singleSeries) => singleSeries.series.some((value) => value.name === xVal)
     );
